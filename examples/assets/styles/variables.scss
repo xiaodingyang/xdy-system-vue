@@ -1,0 +1,136 @@
+// base color
+$menuBgColor: rgb(13, 20, 31);
+$menuActiveColor: #30b08f;
+$blue: #324157;
+$light-blue: #3a71a8;
+$red: #c03639;
+$pink: #e65d6e;
+$green: #30b08f;
+$tiffany: #4ab7bd;
+$yellow: #fec171;
+$panGreen: #30b08f;
+$--color-primary: #1890ff;
+$--color-success: #13ce66;
+$--color-warning: #ffba00;
+$--color-danger: #ff4949;
+// 主题色 nth($theme, 1)根据索引可以拿到对应位置的颜色，注意：索引从1开始
+$theme1: rgb(13, 20, 31), #30b08f,#48D1CC, rgb(153, 153, 153), #fff; // 主色调 背景激活颜色 按钮激活颜色 字体颜色 字体激活颜色
+$theme2: rgb(119, 52, 96), rgb(78, 29, 76),rgb(119, 52, 96), #fff, rgb(227, 179, 37); // 主色调 背景激活颜色 按钮激活颜色 字体颜色 字体激活颜色
+$theme3: rgb(131,175,155), rgb(254,67,101),rgb(200,200,169), #fff, rgb(249,205,173); // 主色调 背景激活颜色 按钮激活颜色 字体颜色 字体激活颜色
+
+/**主题色混合**/
+@mixin theme($theme) {
+	// 菜单栏
+	.menu-header {
+		color: nth($theme, 4) !important;
+	}
+	.menu {
+		background: nth($theme, 1) !important;
+		.el-menu {
+			background: nth($theme, 1) !important;
+		}
+		.menu-header {
+			background: nth($theme, 1) !important;
+		}
+		.el-menu-item,
+		.el-submenu__title {
+			color: nth($theme, 4) !important;
+			background: nth($theme, 1) !important;
+			i {
+				color: nth($theme, 4) !important;
+			}
+		}
+		.el-menu-item:hover,
+		.el-submenu__title:hover,
+		.el-submenu__title:hover >i {
+			color: nth($theme, 5) !important;
+			background: nth($theme, 1) !important;
+        }
+        .el-menu-item:hover i{
+            color: nth($theme, 5) !important;
+        }
+		.el-menu-item.is-active,
+		.el-menu-item.is-active:hover {
+			background: nth($theme, 2) !important;
+			color: nth($theme, 5) !important;
+		}
+		.el-menu-item.is-active i,
+		.el-menu-item.is-active:hover i {
+			color: nth($theme, 5) !important;
+		}
+	}
+	// 面包屑
+	.nav-bar {
+		background: nth($theme, 1) !important;
+	}
+	.breadcrumb__item {
+		color: nth($theme, 4) !important;
+	}
+	.el-breadcrumb__item .el-breadcrumb__inner {
+		color: nth($theme, 4) !important;
+	}
+	.el-breadcrumb__item:last-child .el-breadcrumb__inner,
+	.el-breadcrumb__item:last-child .el-breadcrumb__inner a {
+		color: nth($theme, 5) !important;
+	}
+
+	.el-breadcrumb__item:last-child .el-breadcrumb__inner a:hover,
+	.el-breadcrumb__item:last-child .el-breadcrumb__inner:hover {
+		color: nth($theme, 4) !important;
+	}
+	
+	// tagview
+	.tags-view-container .tags-view-wrapper .tags-view-item.active {
+		background: nth($theme, 2) !important;
+		border-color: nth($theme,2) !important;
+	}
+
+	// 主题色按钮
+	/deep/.el-button--main.is-active,
+    /deep/.el-button--main:active,
+    /deep/.el-button--main:focus,
+	/deep/.el-button--main:hover {
+		background: nth($theme, 3) !important;
+		border-color: nth($theme, 3) !important;
+		color: #ffffff;
+	}
+
+
+
+	/deep/.el-button--main {
+		background: nth($theme, 2) !important;
+		border-color: nth($theme, 2) !important;
+		color: #ffffff;
+    }
+    // 主题色标签
+	/deep/.el-tag--main.is-active,
+    /deep/.el-tag--main:active,
+    /deep/.el-tag--main:focus,
+	/deep/.el-tag--main:hover {
+		background: nth($theme, 3) !important;
+		border-color: nth($theme, 3) !important;
+		color: #ffffff;
+	}
+	/deep/.el-tag--main {
+		background: nth($theme, 2) !important;
+		border-color: nth($theme, 2) !important;
+		color: #ffffff;
+	}
+}
+// 在页面中为theme1和theme2的节点会分别使用样式
+.theme1 {
+	@include theme($theme1);
+}
+.theme2 {
+	@include theme($theme2);
+}
+.theme3 {
+	@include theme($theme3);
+}
+
+// :export 可以导出颜色作为js使用
+:export {
+	theme1: $theme1;
+	theme2: $theme2;
+	theme3: $theme3;
+}

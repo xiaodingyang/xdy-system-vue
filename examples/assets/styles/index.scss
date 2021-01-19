@@ -1,0 +1,110 @@
+@import './variables.scss';
+@import './mixin.scss';
+@import './transition.scss';
+@import './element-ui.scss';
+@import './btn.scss';
+@import './nprogress.scss';
+@import './young.scss';
+
+body {
+	height: 100%;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
+		Microsoft YaHei, Arial, sans-serif;
+}
+
+
+
+html {
+	height: 100%;
+	box-sizing: border-box;
+}
+
+#app {
+	height: 100%;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+.no-padding {
+	padding: 0px !important;
+}
+
+.padding-content {
+	padding: 4px 0;
+}
+
+a:focus,
+a:active {
+	outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+	cursor: pointer;
+	color: inherit;
+	text-decoration: none;
+}
+
+div:focus {
+	outline: none;
+}
+.df {
+	display: flex;
+}
+.df-b {
+	display: flex;
+	justify-content: space-between;
+}
+.df-a {
+	display: flex;
+	justify-content: space-around;
+}
+.fr {
+	float: right;
+}
+
+.fl {
+	float: left;
+}
+
+.pr-15 {
+	padding-right: 15px;
+}
+
+.pl-15 {
+	padding-left: 15px;
+}
+.mr-15 {
+	margin-right: 15px;
+}
+
+.ml-15 {
+	margin-left: 15px;
+}
+
+.ma{
+    margin:auto;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.clearfix {
+	&:after {
+		visibility: hidden;
+		display: block;
+		font-size: 0;
+		content: ' ';
+		clear: both;
+		height: 0;
+	}
+}

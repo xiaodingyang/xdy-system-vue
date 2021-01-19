@@ -1,0 +1,187 @@
+
+
+/*在移动端使用 100vh 时，发现在 Chrome、Safari 浏览器中，因为浏览器栏和一些导航栏、链接栏导致不一样的呈现*/
+@mixin vh($h: 100vh) {
+	height: calc(#{$h} - var(--browser-address-bar, 0px));
+}
+@mixin flex($ai: null, $j: null, $fw: null, $ac: null) {
+	display: flex;
+	justify-content: $j;
+	align-items: $ai;
+	flex-wrap: $fw;
+	align-content: $ac;
+}
+
+@mixin font($s: null, $c: null, $lh: null, $w: null, $ta: null) {
+	font-size: $s;
+	font-weight: $w;
+	color: $c;
+	line-height: $lh;
+	text-align: $ta;
+}
+
+@mixin box($h: null, $w: null, $d: null, $o: null, $p: null) {
+	position: $p;
+	display: $d;
+	width: $w;
+	height: $h;
+	overflow: $o;
+}
+
+@mixin mg($mt: null, $mb: null, $ml: null, $mr: null, $m: null) {
+	margin-top: $mt;
+	margin-bottom: $mb;
+	margin-left: $ml;
+	margin-right: $mr;
+	margin: $m;
+}
+
+@mixin pd($pt: null, $pb: null, $pl: null, $pr: null, $p: null) {
+	padding-top: $pt;
+	padding-bottom: $pb;
+	padding-left: $pl;
+	padding-right: $pr;
+	padding: $p;
+}
+
+@mixin bd(
+	$bt: null,
+	$bb: null,
+	$bl: null,
+	$br: null,
+	$bs: null,
+	$bc: null,
+	$bra: null,
+	$bsd: null,
+	$b: null
+) {
+	border: $b;
+	border-top: $bt;
+	border-bottom: $bb;
+	border-left: $bl;
+	border-right: $br;
+	border-collapse: $bc;
+	border-spacing: $bs;
+	border-radius: $bra;
+	box-shadow: $bsd;
+}
+
+@mixin bg(
+	$c: null,
+	$s: null,
+	$img: null,
+	$p: null,
+	$r: null,
+	$cl: null,
+	$o: null,
+	$bg: null
+) {
+	background: $bg;
+	background-color: $c;
+	background-size: $s;
+	background-image: $img;
+	background-position: $p;
+	background-repeat: $r;
+	background-clip: $cl;
+	background-origin: $o;
+}
+
+@mixin pos($p: null, $l: null, $r: null, $t: null, $b: null, $z: null) {
+	position: $p;
+	top: $t;
+	bottom: $b;
+	left: $l;
+	right: $r;
+	z-index: $z;
+}
+// 包含transition和animate系列，
+@mixin animate($t: null) {
+	transition: $t;
+}
+
+@mixin transform(
+	$sx: null,
+	$sy: null,
+	$s: null,
+	$tx: null,
+	$ty: null,
+	$t: null
+) {
+	transform: scaleX($sx);
+	transform: scaleY($sy);
+	transform: scale($s);
+	transform: translateX($sx);
+	transform: translateX($sy);
+	transform: translate($s);
+}
+
+
+
+
+
+
+
+// @mixin other($c: null) {
+// 	cursor: $c;
+// }
+
+// @mixin clearfix {
+// 	&:after {
+// 		content: '';
+// 		display: table;
+// 		clear: both;
+// 	}
+// }
+
+// @mixin scrollBar {
+// 	&::-webkit-scrollbar-track-piece {
+// 		background: #d3dce6;
+// 	}
+
+// 	&::-webkit-scrollbar {
+// 		width: 6px;
+// 	}
+
+// 	&::-webkit-scrollbar-thumb {
+// 		background: #99a9bf;
+// 		border-radius: 20px;
+// 	}
+// }
+
+// @mixin relative {
+// 	position: relative;
+// 	width: 100%;
+// 	height: 100%;
+// }
+
+// @mixin pct($pct) {
+// 	width: #{$pct};
+// 	position: relative;
+// 	margin: 0 auto;
+// }
+
+// @mixin triangle($width, $height, $color, $direction) {
+// 	$width: $width/2;
+// 	$color-border-style: $height solid $color;
+// 	$transparent-border-style: $width solid transparent;
+// 	height: 0;
+// 	width: 0;
+
+// 	@if $direction==up {
+// 		border-bottom: $color-border-style;
+// 		border-left: $transparent-border-style;
+// 		border-right: $transparent-border-style;
+// 	} @else if $direction==right {
+// 		border-left: $color-border-style;
+// 		border-top: $transparent-border-style;
+// 		border-bottom: $transparent-border-style;
+// 	} @else if $direction==down {
+// 		border-top: $color-border-style;
+// 		border-left: $transparent-border-style;
+// 		border-right: $transparent-border-style;
+// 	} @else if $direction==left {
+// 		border-right: $color-border-style;
+// 		border-top: $transparent-border-style;
+// 		border-bottom: $transparent-border-style;
+// 	}
+// }
