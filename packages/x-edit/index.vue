@@ -1,9 +1,9 @@
 <template>
 	<el-dialog
-		:title="props.diaTitle"
+		:title="deProps.diaTitle"
 		:visible.sync="dialogFormVisible"
 		:close-on-click-modal="false"
-		:width="props.diaWidth"
+		:width="deProps.diaWidth"
 	>
 		<form-create
 			:option="option"
@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import { removeToken } from '@/utils/auth'
 export default {
 	name: 'x-edit',
 	props: {
@@ -32,24 +31,8 @@ export default {
 		},
 		// dialog配置项，以及表单配置项
 		props: {
-			type: Object,
-			default: () => {
-				return {
-					diaWidth: '50%', // dialog 宽度
-					diaTitle: '编辑', // 弹窗标题
-					labelWidth: '150px', // 表单label宽度
-					labelPosition: 'left', // 表单label对其方式
-					disabled: false, // 表单是否disabled
-					// 表单所有组件全局配置
-					global: {
-						'*': {},
-					},
-					// 提交按钮配置
-					submitBtn: {
-						type: 'primary',
-					},
-				}
-			},
+            type: Object,
+            default:()=>{}
 		},
 	},
 	components: {},
@@ -58,18 +41,43 @@ export default {
 			dialogFormVisible: false,
 			form: {},
 			editId: '',
-			option: {
+            deProps:null,
+            option:{},
+		}
+	},
+	created() {
+        this.initProps()
+	},
+	methods: {
+        initProps(){
+            const props = {
+            diaWidth: '50%', // dialog 宽度
+				diaTitle: '编辑', // 弹窗标题
+				labelWidth: '150px', // 表单label宽度
+				labelPosition: 'left', // 表单label对其方式
+				disabled: false, // 表单是否disabled
+				// 表单所有组件全局配置
+				global: {
+					'*': {},
+				},
+				// 提交按钮配置
+				submitBtn: {
+					type: 'primary',
+				}
+        }
+        this.deProps = { ...props, ...this.props }
+        this.option = {
 				form: {
 					//行内表单模式
 					inline: false,
 					//表单域标签的位置，如果值为 left 或者 right 时，则需要设置 label-width
-					labelPosition: this.props.labelPosition || 'left',
+					labelPosition: this.deProps.labelPosition || 'left',
 					//表单域标签的后缀
 					labelSuffix: undefined,
 					//是否显示必填字段的标签旁边的红色星号
 					hideRequiredAsterisk: false,
 					//表单域标签的宽度，例如 '50px'。作为 Form 直接子元素的 form-item 会继承该值。支持 auto。
-					labelWidth: this.props.labelWidth || '150px',
+					labelWidth: this.deProps.labelWidth || '150px',
 					//是否显示校验错误信息
 					showMessage: true,
 					//是否以行内形式展示校验信息
@@ -79,21 +87,18 @@ export default {
 					//是否在 rules 属性改变后立即触发一次验证
 					validateOnRuleChange: true,
 					//是否禁用该表单内的所有组件。若设置为 true，则表单内组件上的 disabled 属性不再生效
-					disabled: this.props.disabled || false,
+					disabled: this.deProps.disabled || false,
 					//用于控制该表单内组件的尺寸 medium / small / mini
 					size: 'medium',
 				},
-				global: this.props.global || {
+				global: this.deProps.global || {
 					'*': {},
 				},
-				submitBtn: this.props.submitBtn || {
+				submitBtn: this.deProps.submitBtn || {
 					type: 'primary',
 				},
-			},
-		}
-	},
-	created() {},
-	methods: {
+			}
+        },
 		//   组件内部值发生改变
 		handleChange(filed, value, $f) {
 			this.$emit('handleChange', $f)

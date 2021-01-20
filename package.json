@@ -1,6 +1,6 @@
 {
   "name": "xdy-system",
-  "version": "0.1.5",
+  "version": "0.1.8",
   "description": "一个自动生成表格基础页面的组件。",
   "author": "xiaodingyang",
   "private": false,
@@ -17,6 +17,7 @@
     "core-js": "^3.6.5",
     "cos-js-sdk-v5": "^1.1.5",
     "element-ui": "^2.13.2",
+    "html-webpack-plugin": "^5.0.0-beta.5",
     "js-cookie": "^2.2.1",
     "less": "^3.11.3",
     "less-loader": "^6.1.3",
