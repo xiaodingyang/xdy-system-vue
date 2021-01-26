@@ -1,6 +1,6 @@
 {
-  "name": "xdy-system",
-  "version": "0.1.8",
+  "name": "xdy-system-vue",
+  "version": "0.1.0",
   "description": "一个自动生成表格基础页面的组件。",
   "author": "xiaodingyang",
   "private": false,
@@ -28,7 +28,8 @@
     "vh-check": "^2.0.5",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
-    "vuex": "^3.4.0"
+    "vuex": "^3.4.0",
+    "xdy-vue": "^0.1.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.4.0",
