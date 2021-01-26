@@ -22,7 +22,7 @@ export default {
 		// 表单渲染项
 		rule: {
 			type: Array,
-			default: [],
+			default: ()=>[],
 		},
 		// 提交api函数
 		submitFunc: {
@@ -137,7 +137,7 @@ export default {
 					// 操作成功以后关闭提交加载按钮
 					this.form.submitBtnProps({ loading: false })
 				})
-				.catch((err) => {
+				.catch(() => {
 					this.dialogFormVisible = false
 					this.form.submitBtnProps({ loading: false })
 				})
@@ -145,4 +145,3 @@ export default {
 	},
 }
 </script>
-<style lang="less" scoped></style>

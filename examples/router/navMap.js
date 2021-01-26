@@ -44,7 +44,7 @@ export default [
                     icon: 'el-icon-s-home',
                     type:1,
                 },
-                component: loadView('components/x-table/index.vue'),
+                component: loadView('views/x-table/index.vue'),
             },
             {
                 path: '/edit',
@@ -55,7 +55,7 @@ export default [
                     icon: 'el-icon-s-home',
                     type:1,
                 },
-                component: loadView('components/x-edit/index.vue'),
+                component: loadView('views/x-edit/index.vue'),
             },
         ]
     },

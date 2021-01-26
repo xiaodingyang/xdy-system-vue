@@ -7,7 +7,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import vhCheck from 'vh-check'
 import formCreate from '@form-create/element-ui'
-import xdySystem,{table} from "./index";
+import xdy from "./index";
 
 // 进度条
 vhCheck('browser-address-bar')
@@ -15,9 +15,7 @@ vhCheck('browser-address-bar')
 Vue.use(ElementUI)
 
 Vue.use(myPlugins)
-console.log('aaa',xdySystem,table);
-Vue.use(xdySystem)
-// Vue.use(table)
+Vue.use(xdy)
 
 // form-create
 Vue.use(formCreate) // 全局挂载，vue组件中可以使用 this.$formCreate 获取

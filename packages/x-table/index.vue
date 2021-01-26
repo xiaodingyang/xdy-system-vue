@@ -188,7 +188,7 @@ export default {
 					}
 					this.loading = false
 				})
-				.catch((err) => (this.loading = false))
+				.catch(() => (this.loading = false))
 		},
 		// 设置按钮图标
 		setIcon(item) {
@@ -204,14 +204,12 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-.base-page {
-	.search {
-		display: flex;
-		border-radius: 5px;
-		background: #fff;
-		padding-bottom: 10px;
-	}
+<style lang="scss" scoped>
+.search {
+	display: flex;
+	border-radius: 5px;
+	background: #fff;
+	padding-bottom: 10px;
 }
 .el-form-item /deep/ {
 	margin-bottom: 0;
