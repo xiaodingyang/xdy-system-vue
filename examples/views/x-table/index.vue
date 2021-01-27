@@ -17,7 +17,12 @@ export default {
             props:{
                 headerStyle:{background: '#e5e5e5', color: '#666'}, // 表格头部颜色设置
                 rowKey: 'id', // 行key，用来多选使用
-                style:{} // 表格样式
+                style:{}, // 表格样式
+                // 树形表格
+                treeProps:{
+						children: 'children',
+						hasChildren: 'hasChildren',
+					}
             },
 			dataFunc() {
 				return new Promise((resolve, reject) => {

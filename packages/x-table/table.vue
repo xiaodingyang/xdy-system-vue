@@ -27,7 +27,10 @@ export default {
 		},
 		// 关于表格的配置
 		props: {
-			type: Object,
+            type: Object,
+            default: ()=>{
+                return {}
+            }
 		},
 	},
 	data() {

@@ -13,7 +13,7 @@
 				size="mini"
 				>搜索</el-button
 			>
-			<el-button @click="form = {}" size="mini" icon="el-icon-setting"
+			<el-button @click="reset" size="mini" icon="el-icon-setting"
 				>重置</el-button
 			>
 		</div>
@@ -141,6 +141,9 @@ export default {
 		})
 	},
 	methods: {
+        reset(){
+            this.form.resetFields()
+        },
 		//   勾选改变
 		selectChange(val) {
 			this.$emit('selectChange', val)

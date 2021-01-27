@@ -1,10 +1,11 @@
 <template>
 	<div>
 		<el-button @click="handelEdit">点击编辑</el-button>
+		<el-button @click="handelAdd">点击新增</el-button>
 		<x-edit
 			ref="edit"
 			:rule="rule"
-			:props="props"
+			:props="editProps"
 			:submitFunc="submitFunc"
 			@change="handleChange"
 			@beforeSubmit="beforeSubmit"
@@ -29,15 +30,32 @@ export default {
                 })
             },
             form:{},
-			props: {
+			editProps: {
                 labelWidth: '100px',
             },
             editData:{
                 username:'xiaodingyang',
                 realname:'xdy',
+                component:'/aaa/bbb'
             },
 			/* 表单渲染项 */
 			rule: [
+                {
+					type: 'radio',
+					title: '菜单类型',
+					field: 'type',
+					options: [
+						{ label: '按钮路由', value: 0 },
+						{ label: '菜单目录', value: 1 },
+					],
+					validate: [
+						{
+							type: 'string',
+							required: true,
+							message: '请选择菜单类型',
+						},
+					],
+				},
 				{
 					type: 'input',
 					field: 'username',
@@ -69,6 +87,21 @@ export default {
 							trigger: 'blur',
 						},
 					],
+                },
+                {
+					type: 'input',
+					title: '组件路径',
+					field: 'component',
+					validate: [
+						{
+							type: 'string',
+							required: true,
+							message: '请输入组件地址',
+						},
+					],
+					props: {
+						placeholder: '请输入组件地址',
+					},
 				},
 			],
 		}
@@ -77,10 +110,20 @@ export default {
 	methods: {
         handelEdit(){
             this.$refs.edit.handleOpen(this.editData)
+            this.$set(this.editProps, 'diaTitle', '编辑')
         },
-		handleChange(data){
-            console.log('handlechange',data);
+        handelAdd(){
+            this.$refs.edit.handleOpen()
+            this.$set(this.editProps, 'diaTitle', '新增')
         },
+		handleChange($f) {
+            // 菜单类型改变
+			if ($f.form.type === 0) {
+				$f.hidden(true, ['realname'])
+			}else{
+				$f.hidden(false, ['realname'])
+			}
+		},
         beforeSubmit(data){
             console.log('beforeSubmit',data);
             data.age = 18

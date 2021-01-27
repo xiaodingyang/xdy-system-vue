@@ -52,6 +52,10 @@ export default {
 	box-sizing: border-box;
 	.container {
 		padding: 15px;
+        .base-page {
+		padding: 15px;
+        background:#fff;
+	}
 	}
 	#main {
 		box-sizing: border-box;

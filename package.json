@@ -1,7 +1,7 @@
 {
-  "name": "xdy-system-vue",
-  "version": "0.1.0",
-  "description": "一个自动生成表格基础页面的组件。",
+  "name": "xdy-example-vue",
+  "version": "0.1.6",
+  "description": "一个自动生成表格基础页面的组件，附带有example案例。",
   "author": "xiaodingyang",
   "private": false,
   "main": "lib/xdy.umd.min.js",

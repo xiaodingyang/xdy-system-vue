@@ -22,7 +22,7 @@ export default {
 		// 表单渲染项
 		rule: {
 			type: Array,
-			default: ()=>[],
+			default: () => [],
 		},
 		// 提交api函数
 		submitFunc: {
@@ -31,27 +31,36 @@ export default {
 		},
 		// dialog配置项，以及表单配置项
 		props: {
-            type: Object,
-            default:()=>{}
+			type: Object,
+			default: () => {},
 		},
 	},
 	components: {},
 	data() {
 		return {
 			dialogFormVisible: false,
-			form: {},
+			form: null,
 			editId: '',
-            deProps:null,
-            option:{},
+			deProps: null,
+			option: {},
 		}
 	},
 	created() {
-        this.initProps()
+		// this.initProps()
+	},
+	watch: {
+		props: {
+			immediate: true,
+			deep: true,
+			handler(props) {
+				this.initProps()
+			},
+		},
 	},
 	methods: {
-        initProps(){
-            const props = {
-            diaWidth: '50%', // dialog 宽度
+		initProps() {
+			const props = {
+				diaWidth: '50%', // dialog 宽度
 				diaTitle: '编辑', // 弹窗标题
 				labelWidth: '150px', // 表单label宽度
 				labelPosition: 'left', // 表单label对其方式
@@ -62,22 +71,22 @@ export default {
 				},
 				// 提交按钮配置
 				submitBtn: {
-					type: 'primary',
-				}
-        }
-        this.deProps = { ...props, ...this.props }
-        this.option = {
+					type: 'main',
+				},
+			}
+			this.deProps = { ...props, ...this.props }
+			this.option = {
 				form: {
 					//行内表单模式
 					inline: false,
 					//表单域标签的位置，如果值为 left 或者 right 时，则需要设置 label-width
-					labelPosition: this.deProps.labelPosition || 'left',
+					labelPosition: this.deProps.labelPosition,
 					//表单域标签的后缀
 					labelSuffix: undefined,
 					//是否显示必填字段的标签旁边的红色星号
 					hideRequiredAsterisk: false,
 					//表单域标签的宽度，例如 '50px'。作为 Form 直接子元素的 form-item 会继承该值。支持 auto。
-					labelWidth: this.deProps.labelWidth || '150px',
+					labelWidth: this.deProps.labelWidth,
 					//是否显示校验错误信息
 					showMessage: true,
 					//是否以行内形式展示校验信息
@@ -87,29 +96,29 @@ export default {
 					//是否在 rules 属性改变后立即触发一次验证
 					validateOnRuleChange: true,
 					//是否禁用该表单内的所有组件。若设置为 true，则表单内组件上的 disabled 属性不再生效
-					disabled: this.deProps.disabled || false,
+					disabled: this.deProps.disabled,
 					//用于控制该表单内组件的尺寸 medium / small / mini
 					size: 'medium',
 				},
-				global: this.deProps.global || {
-					'*': {},
-				},
-				submitBtn: this.deProps.submitBtn || {
-					type: 'primary',
-				},
+				global: this.deProps.global,
+				submitBtn: this.deProps.submitBtn,
 			}
-        },
+		},
 		//   组件内部值发生改变
 		handleChange(filed, value, $f) {
-			this.$emit('handleChange', $f)
+			this.$emit('change', $f)
 		},
 		handleOpen(row) {
 			this.dialogFormVisible = true
 			this.$nextTick(() => {
-				if (this.form && row) {
-					this.editId = row.id // 编辑id
-					this.form.setValue(row)
-					this.$emit('handleChange', this.form) // 初始化change
+				if (this.form) {
+					if (row) {
+						this.editId = row.id // 编辑id
+						this.form.setValue(row)
+					} else {
+						this.form.resetFields()
+					}
+					this.$emit('change', this.form) // 初始化change
 				}
 			})
 		},
@@ -122,12 +131,13 @@ export default {
 			}
 			if (this.editId) formData.id = this.editId
 			this.$emit('beforeSubmit', formData) // 提交前回调
-			console.log('params', formData)
+			console.log('提交之前参数：', formData)
 			// callBack为回调函数，在上层组件中可以重新设置formData值
 			this.submitFunc(formData)
 				.then((res) => {
 					if (res) {
 						this.$emit('afterSubmit', res) // 提交后回调
+						console.log('提交之后返回值：', res)
 						this.$message({
 							type: 'success',
 							message: '操作成功！',
